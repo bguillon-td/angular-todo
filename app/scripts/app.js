@@ -17,6 +17,21 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
+
+  .factory('MyService', [function() {
+
+    function insertTask() {
+
+    }
+
+    function displayTasks() {
+
+    }
+
+
+
+  }])
+
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

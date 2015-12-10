@@ -1,10 +1,32 @@
 <div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+  <h1>Task manager</h1>
+
+  My tasks
+  <div ng-controller="DisplayTaskCtrl">
+    <table>
+      <tr ng-repeat="task in tasks">
+        <td>
+          {{task.deadline}}
+        </td>
+        <td>
+          {{task.category}}
+        </td>
+        <td>
+          {{task.description}}
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div ng-controller="InsertTaskCtrl" />
+    <form name="task" novalidate>
+      Create new task <br />
+      Deadline :  <input type="text" ng-model="task.deadline" name="deadline" required="" /> <br/>
+      Category : <select name="category" /> <br/>
+      Description :  <input type="text" ng-model="task.description" name="description" required="" /><br/>
+      <input type="button" ng-click="save(task)" value="Save" />
+    </form>
+  </div>
 </div>
 
 <div class="row marketing">
