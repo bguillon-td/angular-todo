@@ -2,8 +2,9 @@
   <h1>Task manager</h1>
 
   My tasks
-  <div ng-controller="DisplayTaskCtrl">
-    <table>
+  <div>
+    <table border="1">
+      <tr><td>Deadline</td><td>Category</td><td>Description</td></tr>
       <tr ng-repeat="task in tasks">
         <td>
           {{task.deadline}}
@@ -18,13 +19,14 @@
     </table>
   </div>
 
-  <div ng-controller="InsertTaskCtrl" />
-    <form name="task" novalidate>
+  <div ng-controller="MainCtrl" />
+    <form name="form" novalidate>
       Create new task <br />
-      Deadline :  <input type="text" ng-model="task.deadline" name="deadline" required="" /> <br/>
-      Category : <select name="category" /> <br/>
-      Description :  <input type="text" ng-model="task.description" name="description" required="" /><br/>
-      <input type="button" ng-click="save(task)" value="Save" />
+      Deadline : <input type="text" name="deadline" ng-model="task.deadline" ng-pattern='/^[0,1]?\d{1}\/(([0-2]?\d{1})|([3][0,1]{1}))\/(([1]{1}[9]{1}[9]{1}\d{1})|([2-9]{1}\d{3}))$/' /><br/>
+      <span ng-show="form.deadline.$error.pattern">Incorrect Format, should be MM/DD/YYYY</span><br/>
+      Category : <select ng-model="task.category" ng-options="template.value as template.name for template in task.configs" ></select><br/>
+      Description :  <input type="text" ng-model="task.description" required="" /><br/>
+      <input type="submit" ng-click="saveTask(task)" value="Save" />
     </form>
   </div>
 </div>
@@ -43,3 +45,6 @@
   <h4>Karma</h4>
   <p>Spectacular Test Runner for JavaScript.</p>
 </div>
+
+
+

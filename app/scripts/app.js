@@ -18,19 +18,17 @@ angular
     'ngTouch'
   ])
 
-  .factory('MyService', [function() {
-
-    function insertTask() {
-
-    }
-
-    function displayTasks() {
-
-    }
-
-
-
-  }])
+.service('MyService', function () {
+  var tasks = [];
+  this.insertTask = function (task) {
+    console.log('saveTask');
+    tasks.push({deadline:task.deadline, category:task.category, description:task.description});
+  };
+  this.displayTasks = function () {
+    console.log('displayTasks');
+    return tasks;
+  };
+})
 
   .config(function ($routeProvider) {
     $routeProvider
@@ -48,3 +46,4 @@ angular
         redirectTo: '/'
       });
   });
+
